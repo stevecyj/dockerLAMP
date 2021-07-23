@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  php-apache-environment:
+    container_name: php-apache
+    image: php:8.0-apache
+    volumes:
+      - ./php/src:/var/www/html/
+    ports:
+      - 8080:80
+    networks:
+      my-apache:
+
+networks:
+  # my-bridge-001:
+  #   external:
+  #     name: my-bridg1001
+  my-apache:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.31.40.0/24
